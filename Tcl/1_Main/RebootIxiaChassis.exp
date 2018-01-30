@@ -1,0 +1,16 @@
+#!/usr/bin/expect
+
+set chassisIp 10.219.117.101
+
+puts "\nConnecting to $chassisIp ..."
+set id [spawn telnet $chassisIp 4555]
+
+# Reboot chassis
+send -i $id \r
+expect -i $id -re .*
+
+puts "Rebooting chassis..."
+send -i $id "exec shutdown\r"
+expect -i $id eof
+
+
