@@ -1,0 +1,31 @@
+#The console output that is included is based on the port to port connection. No DUT involved.
+
+(MySamples) 4 % time {source pfcResponseTime.tcl}
+Connecting to Chassis 1: 10.200.104.50 ...
+Took ownership of following ports:
+{1 2 1} {1 2 2}
+Checking link states on ports ...
+Links on all ports are up.
+IXIA Retrieving captured data on 1 2 2....
+
+================================================
+
+IXIA - Captured all the packets: 100 on port 1 2 2
+IXIA - Analyzing captured data, extracting the sequence # and timestamp from this packet.....
+IXIA - Frame: 00 00 00 00 01 38 00 00 00 00 01 3C FF FF 87 73 67 49 42 87 11 80 08 71 18 05 60 00 00 01 00 00 00 63 00 F5 0F 4D 00 12 FF 00 00 63 01 16 19 68 22 23 24 25 26 27 28 29 2A 2B 92 46 00 CD 3A 41
+
+IXIA - Packet first Tx TimeStamp : 321204747 in nanoseconds
+
+IXIA - Formula for Tx Timestamp: 321204747 + 6.72*(100 - (99 + 1) + 1)
+IXIA - PFC Frame Timestamp: 321204760.44
+IXIA - Traffic Packet last TimeStamp 321206135
+IXIA - PFC Response Time = (321206135 - 321204760.44): 1374.5600000023842
+IXIA - PFC Frame Timestamp 321204760.44 + 5.12 (ns) time fully recieved by the DUT: 321204765.56
+
+IXIA - Captured 306 stream traffic packets on port 1 2 1
+IXIA - Analyzing captured data on port 1 2 1.....This will take a while.
+IXIA - Found first packet just under the timestamp of the pause packet number 101 in the buffer - TimeStamp:321204760
+IXIA - 321204765.56 - 321204760 = 5.560000002384186
+IXIA - PFC Frame Timestamp with arrival time and Tx timestamp (321204765.56) just under the timestamp of the pause packet (321204760)
+IXIA - Estimated number of packets received after the pause packet was sent: 205
+17428037 microseconds per iteration
