@@ -310,7 +310,7 @@ proc getStats {portList portArray} {
 	set crcError [stat cget -fcsErrors]
 	set portRxZeroPkt 0
 
-	for {set pgid 1} {$pgid <= $totalPgid} {incr pgid} {
+	for {set pgid 0} {$pgid <= $totalPgid} {incr pgid} {
 	    packetGroupStats get $chassis $card $portNumber $pgid $pgid	    
 	    packetGroupStats getGroup $pgid
 	    set framesReceived [packetGroupStats cget -totalFrames]
