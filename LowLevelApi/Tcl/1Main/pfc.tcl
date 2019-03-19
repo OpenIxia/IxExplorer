@@ -55,7 +55,7 @@ set port($chassisId/1/1,txPort) [list [list name=cos_0 pgid=0 srcMac=00:11:11:11
 				    ]
 
 # These sendPfc ports will send pause frames to the txPort
-set port($chassisId/1/2,sendPfc) [list [list name=pfcPort_stream_1 pgid=8  srcMac=00:99:99:99:99:99 dstMac=01:80:C2:00:00:01 \
+set port($chassisId/1/2,sendPfc) [list [list name=sendPauseFrames pgid=8  srcMac=00:99:99:99:99:99 dstMac=01:80:C2:00:00:01 \
 					    srcIp=1.1.1.10  dstIp=1.1.1.1 pctLineRate=1 \
 					    [list {1 30} {1 40} {1 50} {1 60} {1 70} {1 80} {1 90} {1 65535}] \
 					   ]]
