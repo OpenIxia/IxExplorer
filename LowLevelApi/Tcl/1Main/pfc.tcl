@@ -341,9 +341,6 @@ proc getStats {portList portArray} {
     puts \n
 }
 
-#getStats $portList port
-#exit
-
 portConfig $portList
 configTxStream port
 ixWritePortsToHardware portList
