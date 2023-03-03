@@ -1,0 +1,709 @@
+Test Parameters:
+-run PMD Stats      : 1
+-run Slicer Diags   : 1
+-run BERT           : 1
+-Min SNR            : 20.0
+-Max VGA            : 18
+-Slicer Acquisitions: 20
+-Max Projected BER  : 1.0e-6
+-Max VEC            : 15
+-Max Rlm            : 0.940
+-BERT Max Lane BER  : 1e-8
+-BERT test time     : 10.0
+
+Connecting to Chassis 1: 10.36.75.104 ...
+Took ownership of following ports:
+{1 1 2} {1 1 4}
+
+----------------------------  ----------------------------    ----------------------------    
+Port                          10.36.75.104;1;2                10.36.75.104;1;4                
+----------------------------  ----------------------------    ----------------------------    
+Chassis name                  uhura                           uhura                           
+IxOS version                  9.30.0.338                      9.30.0.338                      
+Card name                     T400GD-4P-QDD                   T400GD-4P-QDD                   
+Port speed                    400000                          400000                          
+Transceiver Info:             
+Transceiver vendor            Amphenol                        MULTILANE                       
+Transceiver model             NLNAMB-0001                     ML4062-SLB                      
+Transceiver serial            APF2033001977H                  14699                           
+Transceiver revCompliance     {CMIS 2.8}                      {CMIS 2.8}                      
+Transceiver type              PassiveCopper                   Fiber                           
+Host Electrical Interface:    
+Tx pre2-cursor tap            0                               0                               
+Tx pre-cursor tap             4                               4                               
+Tx main-cursor tap            140                             140                             
+Tx post-cursor tap            0                               0                               
+Tx post2-cursor tap           0                               0                               
+Tx post3-cursor tap           0                               0                               
+Rx CTLE                       0                               0                               
+Rx DSP mode                   0                               0                               
+
+Time of Test: 2022-Nov-16 19:19:06
+
+Will now check all ports and mode switch if necessary:
+Front panel port for {1 1 2} --> RG 2 already in BERT mode.
+Front panel port for {1 1 4} --> RG 4 already in BERT mode.
+
+=============== Check Retimer PMD Stats ===============
+Clearing acquisitions...
+Running 2 PMD acquisitions and waiting for 6.0s...
+----------------------------  ----------------------------    ----------------------------    
+Port                          10.36.75.104;1;2                10.36.75.104;1;4                
+----------------------------  ----------------------------    ----------------------------    
+Transceiver vendor            Amphenol                        MULTILANE                       
+Transceiver model             NLNAMB-0001                     ML4062-SLB                      
+Transceiver serial            APF2033001977H                  14699                           
+PMD Lane Statistics:
+                              PMD FFO             SNR         PMD FFO             SNR         
+                              Lck ppm  CTLE VGA   (dB)        Lck ppm  CTLE VGA   (dB)        
+                              --- ---- ---- ----  ------      --- ---- ---- ----  ------      
+PMD Statistics Lane 1          Y   0.0   8   0    22.6         Y   0.0   0   2    20.0        
+PMD Statistics Lane 2          Y   0.0   8   0    20.8         Y   0.0   0  14    21.7        
+PMD Statistics Lane 3          Y   0.0   8   0    22.0         Y   0.0   0   0    21.4        
+PMD Statistics Lane 4          Y   0.0   8   0    21.5         Y   0.0   0   3    20.8        
+PMD Statistics Lane 5          Y   0.0   8   0    22.2         Y   0.0   0   0    22.9        
+PMD Statistics Lane 6          Y   0.0   8   0    21.0         Y  -0.0   0   0    21.2        
+PMD Statistics Lane 7          Y  -0.0   8   0    22.2         Y   0.0   0   0    22.6        
+PMD Statistics Lane 8          Y  -0.0   8   0    23.0         Y   0.0   0  13    19.4 F      
+
+Overall Outcome:              PASS                            FAIL                            
+
+Port analysis:
+Fail: port {1 1 4} has lane(S) with SNR < 20.0; module might be suspect.
+
+
+=============== Slicer PAM4 Histograms ===============
+Clearing acquisitions...
+Running 20 Slicer acquisitions and waiting for 60.0s...
+Slicer Histogram Port {1 1 2} Lane 1:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.4 %fs        36.1 %fs        61.7 %fs        86.8 %fs
+             StdDev   1.82 %fs        1.71 %fs        1.69 %fs        1.87 %fs
+     Height @6sigma            3.6 %fs         5.2 %fs         3.7 %fs
+            @10^-8             1.3 %fs         5.7 %fs         2.9 %fs
+                SER           7.42e-10        5.67e-14        4.68e-11
+                BER                           5.26e-10  
+                VEC                           10.13 dB  
+                Rlm                              0.970  
+
+                                                                                   X                                                
+                                                                                  XX                                                
+                  X                               X                               XX                                                
+                  X                              +XX                              XX                             .xX                
+                  XX                             XXX                             XXX                             XXX                
+                 XXXX                            XXX                             XXX                             XXX                
+                 XXXX                           XXXX                             XXXx                            XXXX               
+                 XXXX                           XXXX+                            XXXX                            XXXX               
+                .XXXX                           XXXXX                            XXXX                            XXXX               
+                XXXXX                           XXXXX                           XXXXX                           XXXXX               
+                XXXXXX                          XXXXX                           XXXXXX                          XXXXXX              
+                XXXXXX                          XXXXX                           XXXXXX                          XXXXXX              
+                XXXXXX                         +XXXXX                           XXXXXX                         XXXXXXX              
+               .XXXXXX                         XXXXXXX                          XXXXXX                         XXXXXXX              
+               XXXXXXXX                        XXXXXXX                         XXXXXXXX                        XXXXXXXX             
+               XXXXXXXX                       xXXXXXXX                         XXXXXXXX                       +XXXXXXXX             
+              xXXXXXXXX                       XXXXXXXXX                       .XXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXXX                      XXXXXXXXX                       XXXXXXXXX                      +XXXXXXXXXX            
+             XXXXXXXXXXXX.                  .XXXXXXXXXXX                     xXXXXXXXXXXx                   +XXXXXXXXXXXX           
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 2} Lane 2:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.5 %fs        36.1 %fs        61.7 %fs        86.6 %fs
+             StdDev   2.04 %fs        1.93 %fs        2.04 %fs        2.07 %fs
+     Height @6sigma            0.7 %fs         1.8 %fs         0.2 %fs
+            @10^-8            -0.4 %fs         1.9 %fs        -1.1 %fs
+                SER           8.77e-09        2.78e-10        2.15e-08
+                BER                           2.03e-08  
+                VEC                           12.55 dB  
+                Rlm                              0.962  
+
+                                                  X                                                                                 
+                  X                               X                                .                             XX                 
+                  XX                             XXX                              XX                             XX                 
+                 +XX                             XXX                              XX                             XXX                
+                 XXXX                           XXXX                              XX                             XXX                
+                 XXXX                           XXXX                             XXXX                            XXX                
+                 XXXX                           XXXXX                            XXXX                           XXXXX               
+                 XXXX+                          XXXXX                           XXXXX                           XXXXX               
+                 XXXXX                         xXXXXX                           XXXXX                           XXXXX               
+                XXXXXX                         XXXXXX                           XXXXXx                         XXXXXXX              
+                XXXXXX                         XXXXXX                           XXXXXX                         XXXXXXX              
+                XXXXXXX                        XXXXXXX                         +XXXXXX                         XXXXXXX              
+               XXXXXXXX                        XXXXXXX                         XXXXXXXX                        XXXXXXX              
+               XXXXXXXX                       XXXXXXXX                         XXXXXXXX                       XXXXXXXX              
+               XXXXXXXX                       XXXXXXXXX                        XXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXXX                      XXXXXXXXX                       XXXXXXXXX.                      XXXXXXXXX             
+              XXXXXXXXXX                     xXXXXXXXXX                       XXXXXXXXXX                     XXXXXXXXXXX            
+             xXXXXXXXXXXX                    XXXXXXXXXX+                     XXXXXXXXXXX+                    XXXXXXXXXXX            
+            +XXXXXXXXXXXXX.                 XXXXXXXXXXXXx.                  XXXXXXXXXXXXX+                 xXXXXXXXXXXXXX.          
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 2} Lane 3:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.3 %fs        35.9 %fs        61.5 %fs        86.6 %fs
+             StdDev   1.97 %fs        1.72 %fs        1.79 %fs        1.89 %fs
+     Height @6sigma            2.5 %fs         4.6 %fs         3.0 %fs
+            @10^-8            -0.8 %fs         3.7 %fs         1.8 %fs
+                SER           1.33e-08        1.07e-11        3.12e-10
+                BER                           9.06e-09  
+                VEC                           11.93 dB  
+                Rlm                              0.960  
+
+                                                 X                                                                                  
+                                                 XX                               +                                                 
+                  x                              XX                              XX+                             XXX                
+                  XX                             XXX                             XXX                             XXX                
+                 XXX                             XXX                             XXX                             XXX                
+                 XXX                             XXX                             XXX                            XXXX                
+                 XXX.                           XXXX                            +XXXX                           XXXX                
+                XXXXX                           XXXX                            XXXXX                           XXXXX               
+                XXXXX                           XXXX                            XXXXX                           XXXXX               
+                XXXXX                           XXXXX                           XXXXX                           XXXXX               
+                XXXXX                          XXXXXX                           XXXXX                          .XXXXXx              
+               xXXXXXX                         XXXXXX                           XXXXXX                         XXXXXXX              
+               XXXXXXX                         XXXXXX                          XXXXXXX                         XXXXXXX              
+               XXXXXXXx                        XXXXXXx                         XXXXXXX                         XXXXXXX              
+               XXXXXXXX                       XXXXXXXX                         XXXXXXX                         XXXXXXX              
+               XXXXXXXX                       XXXXXXXX                         XXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXXX                      XXXXXXXX                        XXXXXXXXX                      .XXXXXXXXX             
+              XXXXXXXXXXx                    XXXXXXXXXX                       XXXXXXXXXX                     XXXXXXXXXXX            
+             XXXXXXXXXXXXx+                 +XXXXXXXXXXX                    +XXXXXXXXXXXX                   XXXXXXXXXXXXX           
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 2} Lane 4:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.2 %fs        36.0 %fs        61.7 %fs        86.5 %fs
+             StdDev   1.91 %fs        1.84 %fs        1.83 %fs        1.99 %fs
+     Height @6sigma            2.3 %fs         3.7 %fs         1.9 %fs
+            @10^-8             2.0 %fs         3.6 %fs         1.3 %fs
+                SER           2.34e-10        1.14e-11        6.73e-10
+                BER                           6.12e-10  
+                VEC                           10.35 dB  
+                Rlm                              0.974  
+
+                                                  X                                                                                 
+                  .                               X                               +                                                 
+                  X+                              X                               XX                             .X                 
+                  XX                             XX                               XX                             XX                 
+                 XXX                            +XXX                             xXX                             XXX                
+                 XXX.                           XXXX                             XXX                             XXX                
+                 XXXX                           XXXX                             XXXX                           xXXX                
+                xXXXX                           XXXX                             XXXX                           XXXX                
+                XXXXX                           XXXX+                           .XXXX                           XXXXX               
+                XXXXX                           XXXXX                           XXXXX                           XXXXX               
+                XXXXX                          XXXXXX                           XXXXX                           XXXXX               
+               .XXXXXX                         XXXXXX                           XXXXXx                         XXXXXX               
+               XXXXXXX                         XXXXXXX                          XXXXXX                         XXXXXXX              
+               XXXXXXX                         XXXXXXX                         XXXXXXX.                       XXXXXXXX              
+               XXXXXXXX                       XXXXXXXX                         XXXXXXXX                       XXXXXXXX+             
+              XXXXXXXXX                       XXXXXXXXX                        XXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXXx                      XXXXXXXXX                       XXXXXXXXXX                     xXXXXXXXXX             
+             XXXXXXXXXXX                     XXXXXXXXXX                       XXXXXXXXXX                     XXXXXXXXXXx            
+            +XXXXXXXXXXXX                   XXXXXXXXXXXX.                   .XXXXXXXXXXXX                  .XXXXXXXXXXXXX           
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 2} Lane 5:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.1 %fs        36.2 %fs        61.7 %fs        86.6 %fs
+             StdDev   1.94 %fs        1.88 %fs        1.77 %fs        1.99 %fs
+     Height @6sigma            2.1 %fs         3.6 %fs         2.3 %fs
+            @10^-8             1.6 %fs         2.2 %fs         2.1 %fs
+                SER           4.43e-10        1.66e-10        1.73e-10
+                BER                           5.21e-10  
+                VEC                           10.14 dB  
+                Rlm                              0.977  
+
+                                                  x                               X                                                 
+                  X+                              X                               X.                              X                 
+                  XX                             XX                               XX                              X                 
+                  XX                             XXX                              XXX                             XX                
+                 XXX                             XXX                             XXXX                            XXX                
+                 XXX                             XXX                             XXXX                            XXXx               
+                XXXX.                            XXX                             XXXX                            XXXX               
+                XXXXX                            XXXx                            XXXX                            XXXX               
+                XXXXX                           XXXXX                           xXXXX                           XXXXX               
+                XXXXX                           XXXXX                           XXXXXX                          XXXXX               
+                XXXXX+                         XXXXXX                           XXXXXX                         .XXXXXX              
+               XXXXXXX                         XXXXXXX                          XXXXXX                         XXXXXXX              
+               XXXXXXX                         XXXXXXX                          XXXXXX                         XXXXXXX              
+               XXXXXXXx                        XXXXXXX                         XXXXXXX                         XXXXXXX              
+               XXXXXXXX                       XXXXXXXX+                        XXXXXXXX                       XXXXXXXX+             
+              xXXXXXXXX                       XXXXXXXXX                        XXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXXX                      XXXXXXXXX                        XXXXXXXX                      +XXXXXXXXXx            
+             XXXXXXXXXXX                     xXXXXXXXXXx                     xXXXXXXXXXX                     XXXXXXXXXXX            
+           .XXXXXXXXXXXXX                  .xXXXXXXXXXXXX                    XXXXXXXXXXXX                  .XXXXXXXXXXXX+           
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 2} Lane 6:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.2 %fs        35.7 %fs        61.2 %fs        86.4 %fs
+             StdDev   1.96 %fs        1.81 %fs        1.80 %fs        1.98 %fs
+     Height @6sigma            1.9 %fs         3.9 %fs         2.5 %fs
+            @10^-8            -2.1 %fs         3.1 %fs         2.3 %fs
+                SER           5.10e-08        3.40e-11        1.37e-10
+                BER                           3.41e-08  
+                VEC                           12.57 dB  
+                Rlm                              0.954  
+
+                                                 X                                                                                  
+                                                 XX                              .X                                                 
+                  +                              XX                              XX                                                 
+                  X                             XXX                              XXX                              X                 
+                  XX                            XXX.                             XXX                             +X                 
+                 XXXx                           XXXX                             XXX                             XXX                
+                XXXXX                           XXXX                            XXXX                            XXXX                
+                XXXXX                           XXXX                            XXXX.                           XXXX                
+                XXXXX                          XXXXX                            XXXXX                           XXXX+               
+                XXXXX                          XXXXX+                           XXXXX                           XXXXX               
+                XXXXX+                         XXXXXX                          XXXXXX                           XXXXX               
+                XXXXXX                         XXXXXX                          XXXXXX                          XXXXXX               
+               XXXXXXX                        XXXXXXX                          XXXXXXX                         XXXXXXX              
+               XXXXXXX+                       XXXXXXX                          XXXXXXX                        +XXXXXXX              
+               XXXXXXXX                       XXXXXXXX                        XXXXXXXX                        XXXXXXXX              
+              XXXXXXXXX                       XXXXXXXX                        XXXXXXXX                        XXXXXXXXX             
+              XXXXXXXXXX                     XXXXXXXXX                        XXXXXXXXX                      XXXXXXXXXX             
+             XXXXXXXXXXX                     XXXXXXXXXX                      XXXXXXXXXX+                     XXXXXXXXXXx            
+            .XXXXXXXXXXXX+                  XXXXXXXXXXXX                    XXXXXXXXXXXX.                  .XXXXXXXXXXXXx           
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 2} Lane 7:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.5 %fs        36.1 %fs        61.6 %fs        86.8 %fs
+             StdDev   1.93 %fs        1.71 %fs        1.78 %fs        1.93 %fs
+     Height @6sigma            2.8 %fs         4.5 %fs         2.9 %fs
+            @10^-8             1.9 %fs         4.3 %fs        -0.4 %fs
+                SER           2.47e-10        1.95e-12        8.37e-09
+                BER                           5.75e-09  
+                VEC                           11.45 dB  
+                Rlm                              0.959  
+
+                                                                                  X                                                 
+                   X                             X                                X                               X                 
+                   X                             XX                              XX                               X                 
+                  XX                             XX                              XXX                             .XX                
+                  XX                             XXx                             XXX                             XXX                
+                 XXX                            XXXX                             XXX+                            XXX+               
+                 XXXX                           XXXX                             XXXX                            XXXX               
+                 XXXX                           XXXX                            XXXXX                           .XXXX               
+                xXXXXX                          XXXXX                           XXXXX                           XXXXX               
+                XXXXXX                          XXXXX                           XXXXX                           XXXXX               
+                XXXXXX                          XXXXX                           XXXXXX                          XXXXXX              
+                XXXXXX                         XXXXXX                           XXXXXX                          XXXXXX              
+                XXXXXX                         XXXXXXX                          XXXXXX                         +XXXXXX              
+               XXXXXXXX                        XXXXXXX                         XXXXXXX                         XXXXXXX              
+               XXXXXXXX                        XXXXXXX                         XXXXXXX.                        XXXXXXX              
+               XXXXXXXXx                      .XXXXXXX                        +XXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXXX                      XXXXXXXXX                       XXXXXXXXX                       XXXXXXXXX+            
+              XXXXXXXXXX+                    .XXXXXXXXX                       XXXXXXXXX+                     xXXXXXXXXXX            
+             XXXXXXXXXXXXX                   XXXXXXXXXXX                     XXXXXXXXXXXX.                 .xXXXXXXXXXXXX.          
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 2} Lane 8:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.2 %fs        36.5 %fs        61.5 %fs        86.8 %fs
+             StdDev   1.78 %fs        1.67 %fs        1.63 %fs        1.84 %fs
+     Height @6sigma            4.6 %fs         5.2 %fs         4.4 %fs
+            @10^-8             5.4 %fs         4.5 %fs         2.9 %fs
+                SER           8.40e-14        1.40e-12        5.03e-11
+                BER                           3.45e-11  
+                VEC                            9.12 dB  
+                Rlm                              0.989  
+
+                                                                                  X                                                 
+                                                                                  X                                                 
+                                                  XX                              XX                                                
+                  X                               XX                             XXX                              XX                
+                  X+                             XXX                             XXX                              XX                
+                 XXX                             XXX                             XXX                             +XX                
+                 XXX                             XXXX                            XXX                             XXXX               
+                 XXX.                            XXXX                            XXX                             XXXX               
+                 XXXX                            XXXX                           xXXXX                            XXXX               
+                XXXXX                           XXXXXx                          XXXXX                           XXXXX               
+                XXXXX                           XXXXXX                          XXXXX                           XXXXXX              
+                XXXXXX                          XXXXXX                          XXXXXx                         .XXXXXX              
+                XXXXXX                          XXXXXX                          XXXXXX                         XXXXXXX              
+               XXXXXXX                          XXXXXX                         .XXXXXX                         XXXXXXX              
+               XXXXXXX.                        XXXXXXX                         XXXXXXX                         XXXXXXX              
+              .XXXXXXXX                        XXXXXXXX                        XXXXXXX                        .XXXXXXXX             
+              XXXXXXXXX                        XXXXXXXX                       .XXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXXX                      XXXXXXXXXx                      XXXXXXXXX                       XXXXXXXXXX            
+             XXXXXXXXXXX.                    .XXXXXXXXXX+                    XXXXXXXXXXX.                   XXXXXXXXXXXXx           
+    --------------------------------------------------------------------------------------------------------------------------------
+
+
+Slicer Histogram Port {1 1 4} Lane 1:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   10.7 %fs        36.2 %fs        60.9 %fs        85.9 %fs
+             StdDev   2.25 %fs        2.00 %fs        2.03 %fs        2.09 %fs
+     Height @6sigma            0.0 %fs         0.6 %fs         0.3 %fs
+            @10^-8            -0.4 %fs        -2.0 %fs        -0.9 %fs
+                SER           8.03e-09        5.41e-08        1.57e-08
+                BER                           5.19e-08  
+                VEC                           13.26 dB  
+                Rlm                              0.967  
+
+                                                   X                             X                               X                  
+                                                 XXX                             XX                              X                  
+                 XX                              XXX                             XX+                            .X+                 
+                 XX                              XXX                            XXXX                            XXXX                
+                 XXx                             XXX                            XXXX                           xXXXX                
+                .XXX                            XXXX                           .XXXX                           XXXXX                
+                XXXX                            XXXXX                          XXXXX                           XXXXX                
+               XXXXXX                           XXXXX                          XXXXX+                          XXXXX                
+               XXXXXX                           XXXXX                          XXXXXX                          XXXXX+               
+               XXXXXX                          XXXXXX                          XXXXXX                          XXXXXX               
+               XXXXXX.                         XXXXXX.                         XXXXXX                         XXXXXXX               
+              XXXXXXXX                         XXXXXXX                        XXXXXXX+                        XXXXXXX               
+              XXXXXXXX                         XXXXXXX                        XXXXXXXX                        XXXXXXXX              
+              XXXXXXXX                        XXXXXXXX                        XXXXXXXX                       XXXXXXXXX              
+              XXXXXXXX.                       XXXXXXXXX                       XXXXXXXX                       XXXXXXXXX              
+             XXXXXXXXXX                       XXXXXXXXX                      XXXXXXXXX+                      XXXXXXXXXX             
+             XXXXXXXXXXX                     xXXXXXXXXX.                    xXXXXXXXXXX                     xXXXXXXXXXX             
+           +XXXXXXXXXXXX                     XXXXXXXXXXX                    XXXXXXXXXXXX                    XXXXXXXXXXX.            
+          .XXXXXXXXXXXXXX+                 .XXXXXXXXXXXXXx                +xXXXXXXXXXXXX                  XXXXXXXXXXXXXX.           
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 4} Lane 2:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.1 %fs        36.5 %fs        61.5 %fs        86.5 %fs
+             StdDev   2.12 %fs        2.01 %fs        2.00 %fs        2.22 %fs
+     Height @6sigma            0.5 %fs         1.0 %fs        -0.2 %fs
+            @10^-8            -1.4 %fs         1.3 %fs        -1.5 %fs
+                SER           2.74e-08        7.00e-10        3.13e-08
+                BER                           3.96e-08  
+                VEC                           12.97 dB  
+                Rlm                              0.985  
+
+                  +                                                               X                                                 
+                  X                               XX                             +XX                                                
+                 XX                              XXX                             XXX                             + X                
+                 XX+                             XXX                             XXX                             XXX                
+                 XXX                             XXXX                            XXXx                           XXXX                
+                .XXXX                            XXXX                           XXXXX                           XXXX                
+                XXXXX                           +XXXX                           XXXXX                           XXXXX               
+                XXXXX                           XXXXX                           XXXXX                           XXXXX               
+                XXXXX.                          XXXXX.                          XXXXX                           XXXXX               
+                XXXXXX                          XXXXXX                         XXXXXXx                         xXXXXXX              
+               XXXXXXX                          XXXXXX                         XXXXXXX                         XXXXXXX              
+               XXXXXXX                         xXXXXXX                         XXXXXXX                         XXXXXXX              
+               XXXXXXX                         XXXXXXX                         XXXXXXXx                       xXXXXXXX              
+              .XXXXXXXX                        XXXXXXXX                       +XXXXXXXX                       XXXXXXXX+             
+              XXXXXXXXX                        XXXXXXXX                       XXXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXX                       XXXXXXXXXX                      XXXXXXXXX                      .XXXXXXXXXX            
+              XXXXXXXXXX                     +XXXXXXXXXX                      XXXXXXXXX+                     XXXXXXXXXXX            
+             XXXXXXXXXXXX                    XXXXXXXXXXX+                    XXXXXXXXXXX                    XXXXXXXXXXXXx           
+           +XXXXXXXXXXXXXX                  XXXXXXXXXXXXXx                 .XXXXXXXXXXXXXx                .XXXXXXXXXXXXXX           
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 4} Lane 3:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.1 %fs        36.1 %fs        60.9 %fs        86.5 %fs
+             StdDev   1.83 %fs        1.62 %fs        1.66 %fs        1.81 %fs
+     Height @6sigma            4.3 %fs         5.2 %fs         4.7 %fs
+            @10^-8             3.5 %fs         5.8 %fs         3.1 %fs
+                SER           1.27e-11        2.44e-14        3.17e-11
+                BER                           2.97e-11  
+                VEC                            8.95 dB  
+                Rlm                              0.968  
+
+                                                  X                              X                                                  
+                                                  X                              X                                                  
+                                                 XX                              X+                                                 
+                  XX                             XX                             XXX                               X                 
+                  XX                             XX                             XXX                               XX                
+                 xXX                             XX+                            XXX.                             XXX                
+                 XXX                             XXX                            XXXX                            XXXX                
+                .XXX                            XXXX                            XXXX                            XXXX                
+                XXXX.                           XXXXX                           XXXX                            XXXXX               
+                XXXXX                           XXXXX                          XXXXX                            XXXXX               
+                XXXXX                           XXXXX                          XXXXX                            XXXXX               
+               .XXXXX                           XXXXX                          XXXXXX                          +XXXXX               
+               XXXXXXX                         XXXXXX                          XXXXXX                          XXXXXX               
+               XXXXXXX                         XXXXXX                          XXXXXX                          XXXXXXX              
+               XXXXXXX                         XXXXXXX                        XXXXXXX                          XXXXXXX              
+               XXXXXXXX                       +XXXXXXX                        XXXXXXXX                        XXXXXXXX              
+              XXXXXXXXX                       XXXXXXXX                        XXXXXXXX                        XXXXXXXXX             
+             .XXXXXXXXXX                      XXXXXXXXX                      XXXXXXXXXX                      XXXXXXXXXX.            
+            .XXXXXXXXXXXX                    XXXXXXXXXXX                    +XXXXXXXXXXx                    XXXXXXXXXXXX            
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 4} Lane 4:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   10.9 %fs        36.0 %fs        60.9 %fs        86.3 %fs
+             StdDev   2.04 %fs        1.94 %fs        2.00 %fs        2.15 %fs
+     Height @6sigma            1.2 %fs         1.3 %fs         0.5 %fs
+            @10^-8             1.9 %fs         1.9 %fs        -0.8 %fs
+                SER           2.57e-10        2.55e-10        1.45e-08
+                BER                           1.00e-08  
+                VEC                           12.19 dB  
+                Rlm                              0.979  
+
+                  X                                                                                              X                  
+                  X                              X                               XX                              X                  
+                 XX                              XX                              XX                              XX                 
+                 XX                              XXX                             XX                              XX                 
+                 XX+                             XXX                            XXX                              XXX                
+                 XXX                            XXXX                            XXXX                             XXX                
+                XXXX                            XXXX                            XXXX                            XXXX                
+                XXXXX                           XXXX                           xXXXX                           +XXXX                
+               +XXXXX                          XXXXXX                          XXXXXX                          XXXXX+               
+               XXXXXX                          XXXXXX                          XXXXXX                          XXXXXX               
+               XXXXXXX                         XXXXXX                          XXXXXX                          XXXXXX               
+               XXXXXXX                         XXXXXXX                         XXXXXX                          XXXXXXX              
+               XXXXXXX                         XXXXXXX                        XXXXXXX                          XXXXXXX              
+              XXXXXXXX                        +XXXXXXX                        XXXXXXXX                        XXXXXXXX              
+              XXXXXXXXx                       XXXXXXXX                       XXXXXXXXX                       +XXXXXXXX.             
+             .XXXXXXXXX                       XXXXXXXXX                      XXXXXXXXX                       XXXXXXXXXX             
+             XXXXXXXXXXX                     XXXXXXXXXX                      XXXXXXXXXX                      XXXXXXXXXX+            
+            .XXXXXXXXXXX                     XXXXXXXXXXX                    XXXXXXXXXXX.                    XXXXXXXXXXXX            
+            XXXXXXXXXXXXX.                 .XXXXXXXXXXXX+                  XXXXXXXXXXXXXx                  XXXXXXXXXXXXXXx          
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 4} Lane 5:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   10.9 %fs        36.3 %fs        61.2 %fs        86.3 %fs
+             StdDev   1.76 %fs        1.55 %fs        1.57 %fs        1.70 %fs
+     Height @6sigma            5.7 %fs         6.1 %fs         5.5 %fs
+            @10^-8             4.8 %fs         5.3 %fs         4.8 %fs
+                SER           8.45e-13        1.53e-13        5.00e-13
+                BER                           9.98e-13  
+                VEC                            7.90 dB  
+                Rlm                              0.973  
+
+                                                  X                              +X                                                 
+                                                  XX                             XX                               X                 
+                 .                               XXX                             XX                               X                 
+                 XX                              XXX                             XX                              xX                 
+                 XXX                             XXX                             XX                              XX                 
+                 XXX                             XXX                            xXXx                             XXx                
+                XXXX                             XXX.                           XXXX                            XXXX                
+                XXXX                             XXXX                           XXXX                            XXXX                
+                XXXX                             XXXX                           XXXX                            XXXX                
+                XXXXX                           XXXXX                           XXXXX                           XXXXX               
+                XXXXX                           XXXXX                           XXXXX                          +XXXXX               
+               XXXXXX                           XXXXX                          .XXXXX                          XXXXXX               
+               XXXXXX                           XXXXXx                         XXXXXX                          XXXXXX               
+               XXXXXX.                         xXXXXXX                         XXXXXX.                         XXXXXX               
+               XXXXXXX                         XXXXXXX                         XXXXXXX                         XXXXXXX              
+              XXXXXXXX                         XXXXXXX                         XXXXXXX                        XXXXXXXX              
+              XXXXXXXXX                        XXXXXXXX                       XXXXXXXX                        XXXXXXXX              
+             +XXXXXXXXX                       XXXXXXXXX                       XXXXXXXX+                      XXXXXXXXXX             
+            +XXXXXXXXXXX                     +XXXXXXXXXX                     XXXXXXXXXX+                    +XXXXXXXXXXX            
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 4} Lane 6:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.0 %fs        36.1 %fs        60.9 %fs        86.4 %fs
+             StdDev   1.63 %fs        1.45 %fs        1.54 %fs        1.76 %fs
+     Height @6sigma            6.6 %fs         6.9 %fs         5.6 %fs
+            @10^-8             5.9 %fs         6.9 %fs         5.5 %fs
+                SER           2.57e-14        4.76e-16        9.29e-14
+                BER                           7.93e-14  
+                VEC                            7.51 dB  
+                Rlm                              0.975  
+
+                                                  X                                                                                 
+                  X                               X                              X                                                  
+                  X                              xX                              X                                                  
+                 +X                              XX                              XX                              .+                 
+                 XXX                             XX.                             XX                              XX                 
+                 XXX                             XXX                            xXX                              XX.                
+                 XXX                             XXX                            XXX                              XXX                
+                 XXX                             XXX                            XXX+                            XXXX                
+                XXXX+                           XXXX                            XXXX                            XXXX                
+                XXXXX                           XXXX                            XXXX                            XXXX                
+                XXXXX                           XXXXX                          xXXXX                            XXXXX               
+               xXXXXX                           XXXXX                          XXXXXX                           XXXXX               
+               XXXXXX                           XXXXX                          XXXXXX                          XXXXXX               
+               XXXXXX+                         XXXXXX                          XXXXXX                          XXXXXXx              
+               XXXXXXX                         XXXXXX                         .XXXXXX                          XXXXXXX              
+               XXXXXXX                         XXXXXXX                        XXXXXXX+                        XXXXXXXX              
+               XXXXXXXX                        XXXXXXX                        XXXXXXXX                        XXXXXXXX              
+              XXXXXXXXX                       XXXXXXXX.                      .XXXXXXXX                       XXXXXXXXXX             
+             XXXXXXXXXX+                     +XXXXXXXXX.                     XXXXXXXXXX                     .XXXXXXXXXXX            
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 4} Lane 7:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   11.2 %fs        36.6 %fs        61.3 %fs        86.5 %fs
+             StdDev   1.75 %fs        1.56 %fs        1.56 %fs        1.80 %fs
+     Height @6sigma            5.4 %fs         6.0 %fs         5.0 %fs
+            @10^-8             6.2 %fs         4.7 %fs         3.3 %fs
+                SER           1.02e-14        8.26e-13        2.32e-11
+                BER                           1.60e-11  
+                VEC                            8.80 dB  
+                Rlm                              0.984  
+
+                                                  .                               X                                                 
+                                                  XX                              X                                                 
+                  X                               XX                             XX.                              X                 
+                  XX                              XX                             XXX                              X+                
+                 .XX                             XXX                             XXX                             XXX                
+                 XXX                             XXX                             XXX                             XXX                
+                 XXXX                            XXXX                            XXX                             XXX                
+                 XXXX                            XXXX                           XXXX                             XXX                
+                 XXXX                            XXXX                           XXXX                            XXXXX               
+                XXXXX                           .XXXX                           XXXXX                           XXXXX               
+                XXXXXx                          XXXXX                           XXXXX                           XXXXX               
+                XXXXXX                          XXXXXX                          XXXXX                           XXXXX               
+                XXXXXX                          XXXXXX                          XXXXX                          XXXXXXX              
+                XXXXXX                          XXXXXX                         XXXXXX                          XXXXXXX              
+               XXXXXXXX                         XXXXXX                         XXXXXXX                         XXXXXXX              
+               XXXXXXXX                        XXXXXXXX                        XXXXXXX                        xXXXXXXXx             
+              XXXXXXXXX                        XXXXXXXX                       XXXXXXXX                        XXXXXXXXX             
+              XXXXXXXXX+                      +XXXXXXXX                       XXXXXXXXX                      XXXXXXXXXX             
+            .XXXXXXXXXXX+                     XXXXXXXXXX.                    XXXXXXXXXXX                    XXXXXXXXXXXX            
+    --------------------------------------------------------------------------------------------------------------------------------
+
+Slicer Histogram Port {1 1 4} Lane 8:
+    Acquisitions: 20  Remaining: 0  
+                      Level 0         Level 1         Level 2         Level 3
+                      --------        --------        --------        --------
+               Mean   12.0 %fs        36.1 %fs        61.0 %fs        86.5 %fs
+             StdDev   2.93 %fs        2.39 %fs        2.31 %fs        2.61 %fs
+     Height @6sigma           -7.9 %fs        -3.3 %fs        -4.1 %fs
+            @10^-8           -11.6 %fs        -6.8 %fs        -4.4 %fs
+                SER           4.75e-05        2.79e-06        5.74e-07
+                BER                           3.39e-05 F
+                VEC                                n/a N
+                Rlm                              0.938 F
+
+                                                  X                                                                                 
+                                                  X                              X+                                                 
+                                                 XX                             .XX                                                 
+                   +                            xXXX                            XXX                              + +                
+                   X                            XXXX                            XXXX                             XXX                
+                   Xx                           XXXXx                           XXXX                             XXXX               
+                  XXX                           XXXXX                           XXXX                            XXXXX               
+                 XXXX+                         .XXXXX                          +XXXXX                           XXXXX               
+                 XXXXX                         XXXXXX                          XXXXXX                           XXXXX+              
+                +XXXXXX                        XXXXXX                          XXXXXX                          XXXXXXX              
+                XXXXXXX                       .XXXXXXX                         XXXXXXX                         XXXXXXX              
+               XXXXXXXX                       XXXXXXXX                        XXXXXXXX                        XXXXXXXXX             
+               XXXXXXXXX                      XXXXXXXX.                      +XXXXXXXX                        XXXXXXXXX             
+              .XXXXXXXXXx                     XXXXXXXXX                      XXXXXXXXXX                       XXXXXXXXX             
+              XXXXXXXXXXX                    XXXXXXXXXX                      XXXXXXXXXX                      XXXXXXXXXX+            
+              XXXXXXXXXXXX                   XXXXXXXXXXX                     XXXXXXXXXX                     XXXXXXXXXXXX            
+             XXXXXXXXXXXXX+                  XXXXXXXXXXX.                   XXXXXXXXXXXX                    XXXXXXXXXXXXX           
+            XXXXXXXXXXXXXXXx                XXXXXXXXXXXXX                  .XXXXXXXXXXXX.                  XXXXXXXXXXXXXX           
+           XXXXXXXXXXXXXXXXXXx+           +XXXXXXXXXXXXXXXX+              +XXXXXXXXXXXXXX+               +XXXXXXXXXXXXXXXXX         
+    --------------------------------------------------------------------------------------------------------------------------------
+
+
+
+=============== BERT ===============
+Clearing BERT stats...
+Waiting for 10.0 seconds...
+BERT lane stats on port {1 1 2}:
+PRBS | Patt | Transmit   | Received   | Bits                  | Bits                  | Bit Errors   | Bit Error  | Lost 
+Lane | Lock | Pattern    | Pattern    | Sent                  | Received              | Received     | Ratio      | Lock 
+-----|------|------------|------------|-----------------------|-----------------------|--------------|-------------------
+Total|      |            |            |     4,250,606,134,960 |     4,250,606,135,040 |        2,444 | 5.75e-10   |      
+-----|------|------------|------------|-----------------------|-----------------------|--------------|-------------------
+   0 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |           30 | 1.13e-10   | No   
+   1 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |            0 | 0.00e+00   | No   
+   2 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |          575 | 2.16e-09   | No   
+   3 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |           12 | 4.52e-11   | No   
+   4 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |            6 | 2.26e-11   | No   
+   5 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |            0 | 0.00e+00   | No   
+   6 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |          107 | 4.03e-10   | No   
+   7 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |            0 | 0.00e+00   | No   
+   8 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |        1,371 | 5.16e-09   | No   
+   9 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |            0 | 0.00e+00   | No   
+  10 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,360 |       265,662,883,440 |          290 | 1.09e-09   | No   
+  11 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |            1 | 3.76e-12   | No   
+  12 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |           28 | 1.05e-10   | No   
+  13 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |            0 | 0.00e+00   | No   
+  14 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |           24 | 9.03e-11   | No   
+  15 |  Y   | PRBS-31    | PRBS-31    |       265,662,883,440 |       265,662,883,440 |            0 | 0.00e+00   | No   
+BERT lanes on port {1 1 2} are as expected.
+
+BERT lane stats on port {1 1 4}:
+PRBS | Patt | Transmit   | Received   | Bits                  | Bits                  | Bit Errors   | Bit Error  | Lost 
+Lane | Lock | Pattern    | Pattern    | Sent                  | Received              | Received     | Ratio      | Lock 
+-----|------|------------|------------|-----------------------|-----------------------|--------------|-------------------
+Total|      |            |            |     4,451,405,290,160 |     4,451,256,670,080 |   38,281,250 | 8.59e-06   |      
+-----|------|------------|------------|-----------------------|-----------------------|--------------|-------------------
+   0 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |       10,254 | 3.69e-08 F | No   
+   1 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,560 |          189 | 6.79e-10   | No   
+   2 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,560 |        3,775 | 1.36e-08 F | No   
+   3 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,560 |          249 | 8.95e-10   | No   
+   4 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,560 |            5 | 1.80e-11   | No   
+   5 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |            0 | 0.00e+00   | No   
+   6 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |        1,817 | 6.53e-09   | No   
+   7 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |           55 | 1.98e-10   | No   
+   8 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |            0 | 0.00e+00   | No   
+   9 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,560 |       278,212,830,640 |            0 | 0.00e+00   | No   
+  10 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |            3 | 1.08e-11   | No   
+  11 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |            0 | 0.00e+00   | No   
+  12 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |           22 | 7.91e-11   | No   
+  13 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |            0 | 0.00e+00   | No   
+  14 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,064,210,800 |   37,621,614 | 1.35e-04 F | Yes F
+  15 |  Y   | PRBS-31    | PRBS-31    |       278,212,830,640 |       278,212,830,640 |      643,267 | 2.31e-06 F | No   
+Fail: port {1 1 4} has lane(s) with BER > 1e-8
+Fail: port {1 1 4} has lost lock on some lanes.
+
+
+Detailed Summary:
+=================
+QDD   Transceiver  Transceiver      Transceiver      QDD   PMD              Slicer    VEC           BERT      Lost    
+Port  Vendor       Model            Serial           Lane  Lck  VGA  SNR    ProjBER   (db)  Rlm     BER       Lock   Outcome
+----  ------------ ---------------- ---------------- ----  ---  ---  ----   --------  ----  -----   --------  ----   -------
+2     Amphenol     NLNAMB-0001      APF2033001977H   1     Y    0    22.6   5.26e-10  10.1  0.970   5.65e-11  No     OK
+2     Amphenol     NLNAMB-0001      APF2033001977H   2     Y    0    20.8   2.03e-08  12.6  0.962   1.10e-09  No     OK
+2     Amphenol     NLNAMB-0001      APF2033001977H   3     Y    0    22.0   9.06e-09  11.9  0.960   1.13e-11  No     OK
+2     Amphenol     NLNAMB-0001      APF2033001977H   4     Y    0    21.5   6.12e-10  10.3  0.974   2.02e-10  No     OK
+2     Amphenol     NLNAMB-0001      APF2033001977H   5     Y    0    22.2   5.21e-10  10.1  0.977   2.58e-09  No     OK
+2     Amphenol     NLNAMB-0001      APF2033001977H   6     Y    0    21.0   3.41e-08  12.6  0.954   5.47e-10  No     OK
+2     Amphenol     NLNAMB-0001      APF2033001977H   7     Y    0    22.2   5.75e-09  11.4  0.959   5.25e-11  No     OK
+2     Amphenol     NLNAMB-0001      APF2033001977H   8     Y    0    23.0   3.45e-11   9.1  0.989   4.52e-11  No     OK
+
+4     MULTILANE    ML4062-SLB       14699            1     Y    2    20.0   5.19e-08  13.3  0.967   1.88e-08  No     Hi_BER
+4     MULTILANE    ML4062-SLB       14699            2     Y    14   21.7   3.96e-08  13.0  0.985   7.25e-09  No     Hi_BER
+4     MULTILANE    ML4062-SLB       14699            3     Y    0    21.4   2.97e-11   8.9  0.968   9.00e-12  No     OK
+4     MULTILANE    ML4062-SLB       14699            4     Y    3    20.8   1.00e-08  12.2  0.979   3.36e-09  No     OK
+4     MULTILANE    ML4062-SLB       14699            5     Y    0    22.9   9.98e-13   7.9  0.973   0.00e+00  No     OK
+4     MULTILANE    ML4062-SLB       14699            6     Y    0    21.2   7.93e-14   7.5  0.975   5.40e-12  No     OK
+4     MULTILANE    ML4062-SLB       14699            7     Y    0    22.6   1.60e-11   8.8  0.984   3.96e-11  No     OK
+4     MULTILANE    ML4062-SLB       14699            8     Y    13   19.4   3.39e-05   n/a  0.938   6.87e-05  Yes    Low_SNR;Hi_projBER;Low_Rlm;No_Slicer_Data;Hi_BER;Lost_Lock
+
+
+Overall Summary:
+================
+Port  Vendor       Model            Serial           Outcome
+----  ------------ ---------------- ---------------- -------
+2     Amphenol     NLNAMB-0001      APF2033001977H   Pass
+4     MULTILANE    ML4062-SLB       14699            FAIL
+
+ERROR - Issues found in test!
